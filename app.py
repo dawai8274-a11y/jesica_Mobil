@@ -18,22 +18,24 @@ st.set_page_config(
 )
 
 # =========================
-# CSS KUSTOM (Tema Ungu + Chat Bar Putih, Teks Hitam)
+# CSS KUSTOM (Tema PINK + Chat Bar Putih, Teks Hitam)
 # =========================
 st.markdown("""
 <style>
 :root {
-    --primary-color: #7b2cbf;    /* Ungu utama */
-    --secondary-color: #9d4edd;  /* Ungu muda */
-    --accent-color: #c77dff;     /* Ungu pastel */
-    --bg-dark: #190b28;          /* Latar ungu gelap */
-    --text-light: #efe8ff;       /* Teks terang */
-    --shadow: 0 0 35px rgba(157, 78, 221, 0.40);
+    --primary-color: #E91E63;    /* Pink utama (magenta) */
+    --secondary-color: #FF4081;  /* Hot pink */
+    --accent-color: #FFC1E3;     /* Pink pastel */
+    --bg1: #1a0b14;              /* Latar gradasi gelap 1 */
+    --bg2: #3a0f27;              /* Latar gradasi gelap 2 */
+    --bg3: #6a1b3f;              /* Latar gradasi gelap 3 */
+    --text-light: #FFEFF6;       /* Teks terang nuansa pink */
+    --shadow: 0 0 35px rgba(233, 30, 99, 0.40); /* Bayangan pink */
 }
 
 /* Latar belakang app */
 html, body, .stApp {
-    background: linear-gradient(145deg, #190b28, #240046, #3a0ca3);
+    background: linear-gradient(145deg, var(--bg1), var(--bg2), var(--bg3));
     background-size: 300% 300%;
     animation: bgflow 12s ease infinite;
     color: var(--text-light);
@@ -50,7 +52,7 @@ html, body, .stApp {
     font-size: 2.4em;
     font-weight: 800;
     text-align: center;
-    background: linear-gradient(270deg, #c77dff, #9d4edd, #7b2cbf);
+    background: linear-gradient(270deg, var(--accent-color), var(--secondary-color), var(--primary-color));
     background-size: 400% 400%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -65,14 +67,14 @@ html, body, .stApp {
 
 /* Sidebar */
 section[data-testid="stSidebar"] {
-    background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-    border-right: 1px solid rgba(255,255,255,0.12);
+    background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+    border-right: 1px solid rgba(255,255,255,0.14);
 }
 section[data-testid="stSidebar"] * { color: var(--text-light) !important; }
 
 /* Kontainer chat (panel riwayat) */
 .chat-container {
-    background: rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.07);
     border-radius: 14px;
     padding: 15px;
     box-shadow: var(--shadow);
@@ -80,14 +82,14 @@ section[data-testid="stSidebar"] * { color: var(--text-light) !important; }
 
 /* Bubble chat */
 .chat-bubble-user {
-    background: linear-gradient(135deg, #9d4edd, #7b2cbf);
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
     color: white;
     border-radius: 18px 18px 0 18px;
     padding: 10px 15px;
     margin: 10px 0;
     max-width: 85%;
     word-wrap: break-word;
-    box-shadow: 0 0 12px rgba(157,78,221,0.35);
+    box-shadow: 0 0 12px rgba(233,30,99,0.35);
 }
 .chat-bubble-ai {
     background: rgba(255,255,255,0.10);
@@ -101,43 +103,44 @@ section[data-testid="stSidebar"] * { color: var(--text-light) !important; }
 
 /* Tombol umum */
 .stButton>button {
-    background: linear-gradient(135deg, #c77dff, #7b2cbf);
+    background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
     border: none !important;
-    color: white !important;
+    color: #2b0e1c !important; /* teks kontras di atas accent */
     border-radius: 10px;
     padding: 8px 14px;
-    font-weight: 600;
-    box-shadow: 0 0 12px rgba(157,78,221,0.45);
+    font-weight: 700;
+    box-shadow: 0 0 12px rgba(233,30,99,0.45);
 }
 .stButton>button:hover {
-    background: linear-gradient(135deg, #7b2cbf, #9d4edd);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     transform: scale(1.03);
     transition: 0.15s ease;
+    color: #fff !important;
 }
 
 /* Input umum */
 .stSelectbox, .stNumberInput, .stTextInput, .stSlider { color: var(--text-light) !important; }
 div[data-baseweb="select"] > div {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.22);
 }
 input, textarea {
-    background: rgba(255,255,255,0.06) !important;
+    background: rgba(255,255,255,0.07) !important;
     color: var(--text-light) !important;
-    border: 1px solid rgba(255,255,255,0.2) !important;
+    border: 1px solid rgba(255,255,255,0.22) !important;
 }
 
 /* Dataframe card */
 [data-testid="stDataFrame"] {
-    background: rgba(255,255,255,0.05);
+    background: rgba(255,255,255,0.06);
     border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.14);
     box-shadow: var(--shadow);
     padding: 6px;
 }
 
 /* Divider & caption */
-hr, .stDivider { border-color: rgba(255,255,255,0.15) !important; }
+hr, .stDivider { border-color: rgba(255,255,255,0.18) !important; }
 .stCaption { color: var(--text-light) !important; }
 
 /* ====== CHAT INPUT BAR PUTIH, TEKS HITAM ====== */
@@ -152,7 +155,6 @@ div[data-testid="stChatInput"] [contenteditable="true"] {
     border: 1px solid rgba(0,0,0,0.18) !important;
 }
 div[data-testid="stChatInput"] textarea::placeholder { color: #444 !important; }
-/* tombol send tetap boleh tampil; biarkan default */
 </style>
 """, unsafe_allow_html=True)
 
@@ -203,7 +205,7 @@ def save_to_dataset(input_df: pd.DataFrame, prediction: float, path: str):
 # KONFIG GEMINI (ENV FIRST)
 # =========================
 # (Keamanan) ambil dari environment/secret; jangan hardcode API key
-gemini_api_key_env = os.environ.get("GEMINI_API_KEY", "AIzaSyBaYKVwzeEXFQUEcHh_ieT6J15uHwyz8gE")
+gemini_api_key_env = os.environ.get("GEMINI_API_KEY", "AIzaSyBpcTaHImTZlM0k8-hRDufX4l-NCfuLT_Y")
 try:
     import google.generativeai as genai
     HAVE_GENAI = True
@@ -217,6 +219,8 @@ with st.sidebar:
     key_status = "TERDETEKSI" if gemini_api_key_env else "TIDAK TERDETEKSI"
     st.write(f"GEMINI_API_KEY: *{key_status}*")
     manual_key = "" if gemini_api_key_env else st.text_input("API Key (opsional, tidak disimpan)", type="password")
+    if manual_key:
+        st.session_state["manual_key"] = manual_key
     model_name = st.selectbox("Model LLM", ["gemini-2.5-flash","gemini-flash-latest","gemini-2.5-pro"], index=0)
     temperature = st.slider("Temperature", 0.0, 1.5, 0.6, 0.1)
     max_output_tokens = st.slider("Max Output Tokens", 256, 4096, 1024, 64)
@@ -516,4 +520,4 @@ with right:
         st.rerun()
 
 st.markdown("---")
-st.caption("✨ Aplikasi prediksi harga mobil + chat Gemini AI — tema UNGU, chat bar putih, Enter untuk kirim ✨")
+st.caption("✨ Aplikasi prediksi harga mobil + chat Gemini AI — tema PINK, chat bar putih, Enter untuk kirim ✨")
